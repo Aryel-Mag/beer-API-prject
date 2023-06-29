@@ -1,0 +1,28 @@
+<body>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Name & Surname" aria-label="Name"
+      aria-describedby="basic-addon1" [formControl]="fullName">
+  </div>
+
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="john.doe@mail.com" aria-label="mail"
+      aria-describedby="basic-addon2" [formControl]="eMail">
+  </div>
+  <div class="input-group">
+    <textarea class="form-control" aria-label="textareaa" placeholder="Write here your kind message to us :-)"
+      [formControl]="message"></textarea>
+  </div>
+
+
+  <button mat-button (click)="stockData()">Submit</button>
+
+
+  <p>
+    {{validation}}
+  </p>
+  <p>
+    {{fName}} <br>
+    {{mail}} <br>
+    {{msg}} <br>
+  </p>
+</body>
