@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'add-beer',
     loadChildren: () => import('./pages/create-beer/create-beer.module').then(m => m.CreateBeerModule)
   },
+  {
+    path: '**',
+    loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule)
+  },
 
 
   {
