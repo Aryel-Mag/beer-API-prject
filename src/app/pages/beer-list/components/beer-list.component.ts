@@ -17,6 +17,5 @@ export class BeerListComponent implements OnInit {
 
   ngOnInit() {
     this.list$ = this._beerList.getBeersAPI();
-
   }
 }
