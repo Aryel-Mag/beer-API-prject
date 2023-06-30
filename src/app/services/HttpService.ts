@@ -32,19 +32,19 @@ class HttpService {
     try {
 
       // CREATES JSON FILE WITH BEER INTERFACE
-      let json = JSON.stringify({
+      let json = {
         name: beer.name,
         tagline: beer.tagline,
         first_brewed: beer.firstBrewed,
         description: beer.description,
         image_url: beer.imageUrl,
         food_pairing: [beer.foodPairingOne, beer.foodPairingTwo, beer.foodPairingThree],
-        brewer_tips: beer.brewerTips,
+        brewers_tips: beer.brewerTips,
         contributed_by: beer.contributor
-      });
+      };
 
       console.log(json);
-      // this._http.post(URLBEERS, json).subscribe();
+      this._http.post(URLBEERS, json).subscribe();
       return "Beer successfully added"
     } catch (error) {
       console.error(error);

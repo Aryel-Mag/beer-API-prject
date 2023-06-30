@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { IBeerAdd } from 'src/app/interfaces/beerInterface';
-import CreateBeerModel from '../models/create-beer-model';
 
 import HttpService from 'src/app/services/HttpService';
 
