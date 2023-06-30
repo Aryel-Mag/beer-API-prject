@@ -1,0 +1,17 @@
+body{
+  color: white;
+}
+
+label{
+  margin-top: 5px;
+  margin-bottom: 5px
+}
+
+h2{
+  color: white;
+}
+
+.submit-btn{
+  display: flex;
+  justify-content: center;
+}

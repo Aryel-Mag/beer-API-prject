@@ -1,11 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { IBeer } from "../interfaces/beerInterface";
+import { IBeer, IBeerRaw } from "../interfaces/beerInterface";
 import { map } from 'rxjs/operators';
 
 
-const URLBEERS = " https://api.punkapi.com/v2/beers";
+const URLBEERS = "http://localhost:8808/beers";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,8 @@ class HttpService {
   public getBeersAPI(): Observable<IBeer[]> {
     try {
       const list: Observable<IBeer[]> = this._http.get(URLBEERS).pipe(
-        map((beerList: Object) => beerList as IBeer[]))
+        map((beerObj: Object) => beerObj as IBeerRaw),
+        map((beerList: IBeerRaw) => beerList.data as IBeer[]))
       return list
     } catch (error) {
       console.error(error);

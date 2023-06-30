@@ -1,0 +1,67 @@
+<body>
+  <h2>Add Beer</h2>
+  <form>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-lg-6">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Beer Title: </label>
+            <input [formControl]="_name" type="text" class="form-control" id="exampleFormControlInput1"
+              placeholder="Boxer, Punk Api, etc...">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Tagline: </label>
+            <input [formControl]="_tagline" type="text" class="form-control" id="exampleFormControlInput1"
+              placeholder="Drink's catchphrase">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">First brewed: </label>
+            <input [formControl]="_firstBrewed" type="date" class="form-control" id="exampleFormControlInput1"
+              placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description: </label>
+            <textarea [formControl]="_description" class="form-control" id="exampleFormControlTextarea1" rows="3"
+              placeholder="What to expect, what you feel..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Image URL : </label>
+            <input [formControl]="_imageUrl" type="text" class="form-control" id="exampleFormControlInput1"
+              placeholder="eg: something.com/image/beer">
+          </div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Food Pairing 1: </label>
+            <input [formControl]="_foodPairingOne" type="text" class="form-control" id="exampleFormControlInput1"
+              placeholder="eg: Chicken Masala">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Food Pairing 2: </label>
+            <input [formControl]="_foodPairingTwo" type="text" class="form-control" id="exampleFormControlInput1"
+              placeholder="eg: Fried Tofu">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Food Pairing 3: </label>
+            <input [formControl]="_foodPairingThree" type="text" class="form-control" id="exampleFormControlInput1"
+              placeholder="eg: Chocolate Cake">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Brewer Tips : </label>
+            <textarea [formControl]="_brewerTips" class="form-control" id="exampleFormControlTextarea1" rows="3"
+              placeholder="How to drink it"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Contributor : </label>
+            <input [formControl]="_contributor" type="text" class="form-control" id="exampleFormControlInput1"
+              placeholder="user who added the beer">
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-btn">
+        <button type="submit">Save Beer</button>
+      </div>
+    </div>
+  </form>
+</body>

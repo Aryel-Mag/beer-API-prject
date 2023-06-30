@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'contact',
     loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactModule)
   },
+  {
+    path: 'add-beer',
+    loadChildren: () => import('./pages/create-beer/create-beer.module').then(m => m.CreateBeerModule)
+  },
 
 
   {
