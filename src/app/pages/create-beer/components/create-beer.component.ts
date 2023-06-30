@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
 
 import { IBeerAdd } from 'src/app/interfaces/beerInterface';
 import CreateBeerModel from '../models/create-beer-model';
+
+import HttpService from 'src/app/services/HttpService';
 
 @Component({
   selector: 'app-create-beer',
@@ -11,6 +13,9 @@ import CreateBeerModel from '../models/create-beer-model';
   styleUrls: ['./create-beer.component.css']
 })
 export class CreateBeerComponent {
+  // HTTP CLIENT INJECTION
+  constructor(private readonly _http: HttpService) { }
+
   validator: string = '';
   beerInfo: IBeerAdd = {
     name: '',
@@ -63,7 +68,44 @@ export class CreateBeerComponent {
     this.beerInfo.foodPairingThree = this._foodPairingThree.value;
     this.beerInfo.brewerTips = this._brewerTips.value;
     this.beerInfo.contributor = this._contributor.value;
-    return CreateBeerModel.checkData(this.beerInfo);
+    return this.checkData(this.beerInfo);
+  }
+
+  checkData(data: IBeerAdd): string {
+    if (
+      !!data.name &&
+      !!data.tagline &&
+      !!data.firstBrewed &&
+      !!data.description &&
+      !!data.imageUrl &&
+      !!data.foodPairingOne &&
+      !!data.foodPairingTwo &&
+      !!data.foodPairingThree &&
+      !!data.brewerTips &&
+      !!data.contributor
+    ) {
+      // CHECKS IF THE INSERTED DATE IS CORRECT
+      let today = new Date();
+      let tempTable: string[] = data.firstBrewed.split("/");
+      let months: number = parseInt(tempTable[0]);
+      let years: number = parseInt(tempTable[1]);
+
+      if (Number.isInteger(months) && Number.isInteger(years)) {
+        if (months < 1 || months > 12 || years < 1900 || years > today.getFullYear()) {
+          return "Invalid date";
+        } else {
+          return this.createBeer(data);
+        }
+      } else {
+        return "Invalid date";
+      }
+    } else {
+      return "Please fill all the fields";
+    }
+  }
+
+  createBeer(data: IBeerAdd): string {
+    return this._http.postBeer(data);
   }
 }
 

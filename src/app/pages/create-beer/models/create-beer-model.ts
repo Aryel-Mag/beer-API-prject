@@ -28,9 +28,11 @@ class CreateBeerModel {
         if (months < 1 || months > 12 || years < 1900 || years > today.getFullYear()) {
           return "Invalid date";
         } else {
-          // return ''
-          return this.createBeer(data);
+          return ''
+          // return this.createBeer(data, http);
         }
+      } else {
+        return "Invalid date";
       }
       return ''
     } else {
@@ -38,10 +40,8 @@ class CreateBeerModel {
     }
   }
 
-  protected static createBeer(data: IBeerAdd): string {
-    console.log(this);
-
-
+  protected static createBeer(data: IBeerAdd, http: Object): string {
+    console.log(http)
     return ''
   }
 }
