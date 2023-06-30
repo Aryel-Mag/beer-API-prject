@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { IBeer, IBeerRaw } from "../interfaces/beerInterface";
+import { IBeer, IBeerRaw, IBeerAdd } from "../interfaces/beerInterface";
 import { map } from 'rxjs/operators';
 
 
@@ -27,5 +27,30 @@ class HttpService {
       throw (error)
     }
   }
+
+  public postBeer(beer: IBeerAdd): string {
+    try {
+
+      // CREATES JSON FILE WITH BEER INTERFACE
+      let json = JSON.stringify({
+        name: beer.name,
+        tagline: beer.tagline,
+        first_brewed: beer.firstBrewed,
+        description: beer.description,
+        image_url: beer.imageUrl,
+        food_pairing: [beer.foodPairingOne, beer.foodPairingTwo, beer.foodPairingThree],
+        brewer_tips: beer.brewerTips,
+        contributed_by: beer.contributor
+      });
+
+      console.log(json);
+      // this._http.post(URLBEERS, json).subscribe();
+      return "Beer successfully added"
+    } catch (error) {
+      console.error(error);
+      throw (error);
+    }
+  }
+
 }
 export default HttpService

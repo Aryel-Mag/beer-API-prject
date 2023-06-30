@@ -4,13 +4,14 @@
       <div class="col">
         <h2>Add Beer :</h2>
       </div>
-      <div class="col validator">
+      <div class="col validator"
+        [ngClass]="(validator=== '' || validator === 'ADDED')?'ok-validator':'error-validator'">
         <p>{{validator}}</p>
       </div>
     </div>
   </div>
   <form>
-    <div class="container">
+    <div class=" container">
       <div class="row">
         <div class="col-sm-12 col-lg-6">
           <div class="form-group">
@@ -25,8 +26,8 @@
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">First brewed: </label>
-            <input [formControl]="_firstBrewed" type="date" class="form-control" id="exampleFormControlInput1"
-              placeholder="">
+            <input [formControl]="_firstBrewed" type="text" class="form-control" id="exampleFormControlInput1"
+              placeholder="MM/YYYY">
           </div>
           <div class="form-group">
             <label for="exampleFormControlTextarea1">Description: </label>

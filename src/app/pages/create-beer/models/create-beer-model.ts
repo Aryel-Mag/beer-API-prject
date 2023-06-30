@@ -1,16 +1,48 @@
 import { IBeerAdd } from "src/app/interfaces/beerInterface";
+import HttpService from "../../../services/HttpService";
 class CreateBeerModel {
+  // HTTP CLIENT INJECTION
+  constructor(private readonly _http: HttpService) { }
 
+  // FUNCTION WHICH CHECKS THE DATA FROM VIEW
   static checkData(data: IBeerAdd): string {
-    console.log("model", data);
     if (
       !!data.name &&
-      !!data.description
+      !!data.tagline &&
+      !!data.firstBrewed &&
+      !!data.description &&
+      !!data.imageUrl &&
+      !!data.foodPairingOne &&
+      !!data.foodPairingTwo &&
+      !!data.foodPairingThree &&
+      !!data.brewerTips &&
+      !!data.contributor
     ) {
+      // CHECKS IF THE INSERTED DATE IS CORRECT
+      let today = new Date();
+      let tempTable: string[] = data.firstBrewed.split("/");
+      let months: number = parseInt(tempTable[0]);
+      let years: number = parseInt(tempTable[1]);
 
-      return "OK"
+      if (Number.isInteger(months) && Number.isInteger(years)) {
+        if (months < 1 || months > 12 || years < 1900 || years > today.getFullYear()) {
+          return "Invalid date";
+        } else {
+          // return ''
+          return this.createBeer(data);
+        }
+      }
+      return ''
+    } else {
+      return "Please fill all the fields";
     }
-    return ""
+  }
+
+  protected static createBeer(data: IBeerAdd): string {
+    console.log(this);
+
+
+    return ''
   }
 }
 
