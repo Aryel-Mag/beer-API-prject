@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
 
 import { IBeerAdd } from 'src/app/interfaces/beerInterface';
+import CreateBeerModel from '../models/create-beer-model';
 
 @Component({
   selector: 'app-create-beer',
@@ -10,6 +11,20 @@ import { IBeerAdd } from 'src/app/interfaces/beerInterface';
   styleUrls: ['./create-beer.component.css']
 })
 export class CreateBeerComponent {
+  validator: string = '';
+  beerInfo: IBeerAdd = {
+    name: '',
+    tagline: '',
+    firstBrewed: '',
+    description: '',
+    imageUrl: '',
+    foodPairingOne: '',
+    foodPairingTwo: '',
+    foodPairingThree: '',
+    brewerTips: '',
+    contributor: ''
+  };
+
   // LINKING THE FORM INPUTS TO THE MODEL
   _name = new FormControl('');
   _tagline = new FormControl('');
@@ -36,4 +51,20 @@ export class CreateBeerComponent {
   //   _contributor: FormControl
   // ) { }
 
+  ////////////////////////////////////////////////////////////////
+  saveInfo(): string {
+    this.beerInfo.name = this._name.value;
+    this.beerInfo.tagline = this._tagline.value;
+    this.beerInfo.firstBrewed = this._firstBrewed.value;
+    this.beerInfo.description = this._description.value;
+    this.beerInfo.imageUrl = this._imageUrl.value;
+    this.beerInfo.foodPairingOne = this._foodPairingOne.value;
+    this.beerInfo.foodPairingTwo = this._foodPairingTwo.value;
+    this.beerInfo.foodPairingThree = this._foodPairingThree.value;
+    this.beerInfo.brewerTips = this._brewerTips.value;
+    this.beerInfo.contributor = this._contributor.value;
+    return CreateBeerModel.checkData(this.beerInfo);
+  }
 }
+
+export default CreateBeerComponent

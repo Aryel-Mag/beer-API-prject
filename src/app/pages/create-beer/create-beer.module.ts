@@ -4,7 +4,7 @@ import { CreateBeerComponent } from './components/create-beer.component';
 
 import { CreateBeerRoutingModule } from './create-beer-routing.module';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     CreateBeerRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class CreateBeerModule { }

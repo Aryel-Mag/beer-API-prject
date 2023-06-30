@@ -1,16 +1,16 @@
 import { HttpClientModule } from "@angular/common/http"
 
 interface IBeerAdd {
-  name: string,
-  tagline: string,
-  firstBrewed: Date,
-  description: string,
-  imageUrl: string,
-  foodPairingOne: string,
-  foodPairingTwo: string,
-  foodPairingThree: string,
-  brewerTips: string,
-  contributor: string
+  name: string | null,
+  tagline: string | null,
+  firstBrewed: string | null,
+  description: string | null,
+  imageUrl: string | null,
+  foodPairingOne: string | null,
+  foodPairingTwo: string | null,
+  foodPairingThree: string | null,
+  brewerTips: string | null,
+  contributor: string | null
 }
 
 interface IBeer {
