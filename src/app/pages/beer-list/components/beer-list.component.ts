@@ -17,7 +17,7 @@ export class BeerListComponent implements OnInit {
 
   constructor(
     private readonly _beerList: HttpService,
-    private readonly _route: Router
+    // private readonly _route: Router
   ) { }
 
   ngOnInit() {

@@ -9,6 +9,9 @@ import { HeaderModule } from './components/header/header.module';
 import { MainBodyModule } from './components/main-body/main-body.module';
 import { FooterModule } from './components/footer/footer.module';
 
+import { StoreModule } from '@ngrx/store';
+import { storeReducer } from './store/beers.reducer';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -19,7 +22,8 @@ import { FooterModule } from './components/footer/footer.module';
     HttpClientModule,
     HeaderModule,
     FooterModule,
-    MainBodyModule
+    MainBodyModule,
+    StoreModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]
