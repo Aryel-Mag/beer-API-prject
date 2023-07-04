@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private _route: Router) { }
+  constructor(private readonly _route: Router) { }
   onLogoClicked(): void {
     this._route.navigate(['/']);
   }
