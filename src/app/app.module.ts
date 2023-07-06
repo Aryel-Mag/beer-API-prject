@@ -10,7 +10,7 @@ import { MainBodyModule } from './components/main-body/main-body.module';
 import { FooterModule } from './components/footer/footer.module';
 
 import { StoreModule } from '@ngrx/store';
-import { storeReducer } from './store/beers.reducer';
+// import { storeReducer } from './store/beers.reducer';
 
 @NgModule({
   declarations: [
