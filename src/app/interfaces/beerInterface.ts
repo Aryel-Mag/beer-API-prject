@@ -26,4 +26,21 @@ interface IBeerRaw {
   data: Object[]
 }
 
-export { IBeer, IBeerRaw, IBeerAdd }
+enum payloadStatus {
+  pending = 'pending',
+  loading = 'loading',
+  success = 'success',
+  error = 'error'
+}
+
+interface IPayloadStatus {
+  data: IBeer[],
+  status: payloadStatus,
+  error: string
+}
+
+interface AppState {
+  beers: IPayloadStatus
+}
+
+export { IBeer, IBeerRaw, IBeerAdd, AppState, IPayloadStatus, payloadStatus }

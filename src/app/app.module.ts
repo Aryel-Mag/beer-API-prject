@@ -23,7 +23,8 @@ import { StoreModule } from '@ngrx/store';
     HeaderModule,
     FooterModule,
     MainBodyModule,
-    StoreModule.forRoot({})
+    StoreModule.forRoot({}),
+    StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]
