@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { IBeer, payloadStatus } from '../../../interfaces/beerInterface'
+import { IBeer, payloadStatus, AppState } from '../../../interfaces/beerInterface'
 import { Observable } from 'rxjs';
 
 // import { Router } from '@angular/router';
@@ -19,14 +19,14 @@ export class BeerListComponent implements OnInit {
 
   constructor(
     // private readonly _beerList: HttpService,
-    private readonly _store: Store,
+    private readonly _store: Store<{ beers: AppState }>
     // private readonly _route: Router
   ) { }
 
   ngOnInit() {
     this._store.dispatch(BeersAction.getBeers({ pStatus: payloadStatus.loading }));
 
-    // this.allBeers$ = this._store.select(selectAllBeers);
+    this.allBeers$ = this._store.select(selectAllBeers);
 
     // this.list$ = this._beerList.getBeersAPI();
   }
