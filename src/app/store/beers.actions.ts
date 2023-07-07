@@ -18,9 +18,9 @@ export const BeersAction = createActionGroup({
   source: 'Beers',
   events: {
     'Get Beers': props<{ pStatus: payloadStatus }>(),
-    'get Beers Success': props<{ beers: IBeer[], status: payloadStatus }>(),
+    'get Beers Success': props<{ beers: IBeer[], pStatus: payloadStatus }>(),
     'get Beers Error': props<{
-      status: payloadStatus, error: string
+      pStatus: payloadStatus, error: string
     }>(),
 
     'Add Beer': props<{ bookId: string }>(),

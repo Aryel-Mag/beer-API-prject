@@ -6,6 +6,8 @@ import HttpService from '../../../services/HttpService';
 import { Observable } from 'rxjs';
 
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { selectAllBeers } from 'src/app/store/beers.selector';
 
 @Component({
   selector: 'app-beer-list',
@@ -14,14 +16,18 @@ import { Router } from '@angular/router';
 })
 export class BeerListComponent implements OnInit {
   public list$!: Observable<IBeer[]>;
+  public allBeers$!: Observable<IBeer[]>;
 
   constructor(
     private readonly _beerList: HttpService,
+    private readonly _store: Store,
     // private readonly _route: Router
   ) { }
 
   ngOnInit() {
-    this.list$ = this._beerList.getBeersAPI();
+    this.allBeers$ = this._store.select(selectAllBeers);
+
+    // this.list$ = this._beerList.getBeersAPI();
   }
 
 

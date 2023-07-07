@@ -10,7 +10,7 @@ import { MainBodyModule } from './components/main-body/main-body.module';
 import { FooterModule } from './components/footer/footer.module';
 
 import { StoreModule } from '@ngrx/store';
-// import { storeReducer } from './store/beers.reducer';
+import { beersReducer } from './store/beers.reducer';
 
 @NgModule({
   declarations: [
@@ -23,8 +23,7 @@ import { StoreModule } from '@ngrx/store';
     HeaderModule,
     FooterModule,
     MainBodyModule,
-    StoreModule.forRoot({}),
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({ beers: beersReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent]
