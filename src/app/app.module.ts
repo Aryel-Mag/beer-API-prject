@@ -11,6 +11,7 @@ import { FooterModule } from './components/footer/footer.module';
 
 import { StoreModule } from '@ngrx/store';
 import { beersReducer } from './store/beers.reducer';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { beersReducer } from './store/beers.reducer';
     FooterModule,
     MainBodyModule,
     StoreModule.forRoot({ beers: beersReducer }),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]

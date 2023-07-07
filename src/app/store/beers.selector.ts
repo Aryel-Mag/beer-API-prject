@@ -3,13 +3,12 @@ import { IPayloadStatus, AppState, IBeer } from '../interfaces/beerInterface';
 
 // export const selectBeers = (state: AppState) => state.beers;
 
-export const selectBeers: MemoizedSelector<AppState, IPayloadStatus> =
-  createFeatureSelector<IPayloadStatus>('data');
+export const selectBeers = createFeatureSelector<AppState>('beers');
 
-export const selectAllBeers: MemoizedSelector<AppState, IBeer[]> =
+export const selectAllBeers =
   createSelector(
     selectBeers,
-    (state: IPayloadStatus) => state.data
+    (state: AppState) => state.beers.data
   )
 
 // export const selectAllBeers = createSelector(

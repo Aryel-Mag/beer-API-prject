@@ -11,7 +11,7 @@ const URLBEERS = "http://localhost:8808/beers";
   providedIn: 'root'
 })
 
-class HttpService {
+export class HttpService {
 
   constructor(private readonly _http: HttpClient) { }
 
@@ -57,4 +57,3 @@ class HttpService {
   }
 
 }
-export default HttpService
