@@ -26,7 +26,7 @@ export class BeerListComponent implements OnInit {
   ngOnInit() {
     this._store.dispatch(BeersAction.getBeers({ pStatus: payloadStatus.loading }));
 
-    this.allBeers$ = this._store.select(selectAllBeers);
+    // this.allBeers$ = this._store.select(selectAllBeers);
 
     // this.list$ = this._beerList.getBeersAPI();
   }
