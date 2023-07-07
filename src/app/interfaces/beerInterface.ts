@@ -35,7 +35,7 @@ enum payloadStatus {
 
 interface IPayloadStatus {
   data: IBeer[],
-  status: payloadStatus,
+  pStatus: payloadStatus,
   error: string
 }
 

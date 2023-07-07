@@ -17,10 +17,10 @@ import { payloadStatus, IBeer } from '../interfaces/beerInterface';
 export const BeersAction = createActionGroup({
   source: 'Beers',
   events: {
-    'Get Beers': props<{ status: payloadStatus.pending }>(),
-    'get Beers Success': props<{ beers: IBeer[], status: payloadStatus.success }>(),
+    'Get Beers': props<{ pStatus: payloadStatus }>(),
+    'get Beers Success': props<{ beers: IBeer[], status: payloadStatus }>(),
     'get Beers Error': props<{
-      status: payloadStatus.error, error: 'An error occured while loading the beer list'
+      status: payloadStatus, error: string
     }>(),
 
     'Add Beer': props<{ bookId: string }>(),
