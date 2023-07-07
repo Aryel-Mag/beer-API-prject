@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { IBeer, IBeerRaw, IBeerAdd } from "../interfaces/beerInterface";
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 
 const URLBEERS = "http://localhost:8808/beers";
@@ -11,7 +11,7 @@ const URLBEERS = "http://localhost:8808/beers";
   providedIn: 'root'
 })
 
-export class HttpService {
+class HttpService {
 
   constructor(private readonly _http: HttpClient) { }
 
@@ -20,7 +20,9 @@ export class HttpService {
     try {
       const list: Observable<IBeer[]> = this._http.get(URLBEERS).pipe(
         map((beerObj: Object) => beerObj as IBeerRaw),
-        map((beerList: IBeerRaw) => beerList.data as IBeer[]))
+        map((beerList: IBeerRaw) => beerList.data as IBeer[]),
+        // tap(console.log)
+      )
       return list
     } catch (error) {
       console.error(error);
@@ -57,3 +59,4 @@ export class HttpService {
   }
 
 }
+export default HttpService

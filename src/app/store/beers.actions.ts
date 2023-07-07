@@ -17,13 +17,10 @@ import { payloadStatus, IBeer } from '../interfaces/beerInterface';
 export const BeersAction = createActionGroup({
   source: 'Beers',
   events: {
-    'Get Beers': props<{ pStatus: payloadStatus }>(),
-    'get Beers Success': props<{ beers: IBeer[], pStatus: payloadStatus }>(),
-    'get Beers Error': props<{
-      pStatus: payloadStatus, error: string
-    }>(),
-
-    'Add Beer': props<{ bookId: string }>(),
-    'Remove Beer': props<{ bookId: string }>(),
+    getBeers: props<{ pStatus: payloadStatus }>(),
+    getBeersSuccess: props<{ beers: IBeer[]; pStatus: payloadStatus }>(),
+    getBeersError: props<{ pStatus: payloadStatus; error: string }>(),
+    addBeer: props<{ bookId: string }>(),
+    removeBeer: props<{ bookId: string }>(),
   },
 });

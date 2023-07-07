@@ -34,13 +34,13 @@ enum payloadStatus {
 }
 
 interface IPayloadStatus {
-  data: IBeer[],
-  pStatus: payloadStatus,
-  error: string
+  data: IBeer[];
+  pStatus: payloadStatus;
+  error: string;
 }
 
 interface AppState {
-  beers: IPayloadStatus
+  beers: IPayloadStatus;
 }
 
 export { IBeer, IBeerRaw, IBeerAdd, AppState, IPayloadStatus, payloadStatus }

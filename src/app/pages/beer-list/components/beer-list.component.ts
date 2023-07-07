@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { IBeer } from '../../../interfaces/beerInterface'
-
-import HttpService from '../../../services/HttpService';
+import { IBeer, payloadStatus } from '../../../interfaces/beerInterface'
 import { Observable } from 'rxjs';
 
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectAllBeers } from 'src/app/store/beers.selector';
+import { BeersAction } from 'src/app/store/beers.actions';
 
 @Component({
   selector: 'app-beer-list',
@@ -15,18 +14,20 @@ import { selectAllBeers } from 'src/app/store/beers.selector';
   styleUrls: ['./beer-list.component.css']
 })
 export class BeerListComponent implements OnInit {
-  public list$!: Observable<IBeer[]>;
+  // public list$!: Observable<IBeer[]>;
   public allBeers$!: Observable<IBeer[]>;
 
   constructor(
-    private readonly _beerList: HttpService,
+    // private readonly _beerList: HttpService,
     private readonly _store: Store,
     // private readonly _route: Router
   ) { }
 
   ngOnInit() {
+    this._store.dispatch(BeersAction.getBeers({ pStatus: payloadStatus.loading }));
+
     this.allBeers$ = this._store.select(selectAllBeers);
-    console.log(this.allBeers$);
+
     // this.list$ = this._beerList.getBeersAPI();
   }
 
@@ -34,7 +35,7 @@ export class BeerListComponent implements OnInit {
   deleteBeer(event: Event) {
     // this._route.navigate(['/beer-list']);
     let cardId = (event.target as HTMLButtonElement).id;
-    this._beerList.deleteBeer(parseInt(cardId));
+    // this._beerList.deleteBeer(parseInt(cardId));
     // location.reload();
   }
 

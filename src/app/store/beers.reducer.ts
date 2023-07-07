@@ -14,8 +14,7 @@ export const beersReducer = createReducer(
     ({ ...state, pStatus: payloadStatus.loading })
   ),
 
-  on(BeersAction.getBeersSuccess, (state, { beers, pStatus }) =>
-    ({ ...state, data: beers, pStatus: pStatus })
+  on(BeersAction.getBeersSuccess, (state, { beers, pStatus }) => { console.log('REDUCER', beers); return ({ ...state, data: beers, pStatus: pStatus }) }
   ),
 
   on(BeersAction.getBeersError, (state, { error, pStatus }) =>
