@@ -7,7 +7,7 @@ console.log('selector beers', selectBeersState);
 export const selectAllBeers = createSelector(
   selectBeersState,
   (state: AppState) => {
-    console.log(state);
+    console.log("SELECTOR", state.beers);
     return state.beers ? state.beers.data : [];
   }
 );
