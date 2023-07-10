@@ -1,5 +1,5 @@
 <body>
-  <div *ngIf="list$ | async as listing" class="container">
+  <div *ngIf="allBeers$ | async as listing" class="container">
     <div class="row w-100 d-flex justify-content-center">
       <div *ngFor="let beer of listing" class="col-sm-12 col-lg-4">
         <div class="card-grid">
