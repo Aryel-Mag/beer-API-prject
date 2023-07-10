@@ -1,14 +1,13 @@
 import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 import { AppState, IPayloadStatus, IBeer } from '../interfaces/beerInterface';
 
-export const selectBeersState = createFeatureSelector<AppState>('beers');
-console.log('selector beers', selectBeersState);
+export const selectBeersState: MemoizedSelector<any, IPayloadStatus> = createFeatureSelector<IPayloadStatus>('beers');
 
 export const selectAllBeers = createSelector(
   selectBeersState,
-  (state: AppState) => {
-    console.log("SELECTOR", state.beers);
-    return state.beers ? state.beers.data : [];
+  ({ data }: IPayloadStatus) => {
+    console.log("SELECTOR", data);
+    return data ? data : [];
   }
 );
 

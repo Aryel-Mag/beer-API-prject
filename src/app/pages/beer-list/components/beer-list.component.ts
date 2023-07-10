@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { IBeer, payloadStatus, AppState } from '../../../interfaces/beerInterface'
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 // import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -14,19 +14,16 @@ import { BeersAction } from 'src/app/store/beers.actions';
   styleUrls: ['./beer-list.component.css']
 })
 export class BeerListComponent implements OnInit {
-  // public list$!: Observable<IBeer[]>;
   public allBeers$!: Observable<IBeer[]>;
 
   constructor(
-    // private readonly _beerList: HttpService,
-    private readonly _store: Store<{ beers: AppState }>
-    // private readonly _route: Router
+    private readonly _store: Store
   ) { }
 
   ngOnInit() {
     this._store.dispatch(BeersAction.getBeers({ pStatus: payloadStatus.loading }));
 
-    this.allBeers$ = this._store.select(selectAllBeers);
+    this.allBeers$ = this._store.select(selectAllBeers).pipe(tap(() => console.log(this.allBeers$)));
 
     // this.list$ = this._beerList.getBeersAPI();
   }
