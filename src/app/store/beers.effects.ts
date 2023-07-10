@@ -13,12 +13,23 @@ export class BeersEffects {
       ofType(BeersAction.getBeers),
       exhaustMap(() => {
         return this._httpService.getBeersAPI().pipe(
-          tap((beers) => {
-            console.log('EFFECTS:', beers);
-          }),
-          map((beers) => BeersAction.getBeersSuccess({ beers: beers, pStatus: payloadStatus.success })),
+          map((beersList) => BeersAction.getBeersSuccess({ beers: beersList, pStatus: payloadStatus.success })),
           catchError(
             () => of(BeersAction.getBeersError({
+              pStatus: payloadStatus.error, error: 'An error occurred while loading the beer list'
+            }))))
+      })
+    )
+  );
+
+  addBeers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BeersAction.addBeer),
+      exhaustMap((payload: any) => {
+        return this._httpService.postBeer(payload.beer).pipe(
+          map((beer) => BeersAction.addBeerSuccess({ beer, pStatus: payloadStatus.success })),
+          catchError(
+            () => of(BeersAction.addBeerError({
               pStatus: payloadStatus.error, error: 'An error occurred while loading the beer list'
             }))))
       })

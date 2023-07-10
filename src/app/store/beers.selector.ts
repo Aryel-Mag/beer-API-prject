@@ -5,10 +5,7 @@ export const selectBeersState: MemoizedSelector<any, IPayloadStatus> = createFea
 
 export const selectAllBeers = createSelector(
   selectBeersState,
-  ({ data }: IPayloadStatus) => {
-    console.log("SELECTOR", data);
-    return data ? data : [];
-  }
+  ({ data }: IPayloadStatus) => data ? data : []
 );
 
 

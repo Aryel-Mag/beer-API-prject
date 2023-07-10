@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
-import { IBeerAdd } from 'src/app/interfaces/beerInterface';
+import { IBeer, payloadStatus } from 'src/app/interfaces/beerInterface';
 
 import HttpService from 'src/app/services/HttpService';
+import { BeersAction } from 'src/app/store/beers.actions';
 
 @Component({
   selector: 'app-create-beer',
@@ -13,15 +15,16 @@ import HttpService from 'src/app/services/HttpService';
 })
 export class CreateBeerComponent {
   // HTTP CLIENT INJECTION
-  constructor(private readonly _http: HttpService) { }
+  constructor(private readonly _store: Store) { }
 
   validator: string = '';
-  beerInfo: IBeerAdd = {
+  beerInfo: IBeer = {
+    id: null,
     name: '',
     tagline: '',
     firstBrewed: '',
     description: '',
-    imageUrl: '',
+    image_url: '',
     foodPairingOne: '',
     foodPairingTwo: '',
     foodPairingThree: '',
@@ -34,26 +37,12 @@ export class CreateBeerComponent {
   _tagline = new FormControl('');
   _firstBrewed = new FormControl('');
   _description = new FormControl('');
-  _imageUrl = new FormControl('');
+  _img_url = new FormControl('');
   _foodPairingOne = new FormControl('');
   _foodPairingTwo = new FormControl('');
   _foodPairingThree = new FormControl('');
   _brewerTips = new FormControl('');
   _contributor = new FormControl('');
-
-  // // inject all the dependencies for add beer form
-  // constructor(
-  //   _name: FormControl,
-  //   _tagline: FormControl,
-  //   _firstBrewed: FormControl,
-  //   _description: FormControl,
-  //   _imageUrl: FormControl,
-  //   _foodPairingOne: FormControl,
-  //   _foodPairingTwo: FormControl,
-  //   _foodPairingThree: FormControl,
-  //   _brewerTips: FormControl,
-  //   _contributor: FormControl
-  // ) { }
 
   ////////////////////////////////////////////////////////////////
   saveInfo(): string {
@@ -61,7 +50,7 @@ export class CreateBeerComponent {
     this.beerInfo.tagline = this._tagline.value;
     this.beerInfo.firstBrewed = this._firstBrewed.value;
     this.beerInfo.description = this._description.value;
-    this.beerInfo.imageUrl = this._imageUrl.value;
+    this.beerInfo.image_url = this._img_url.value;
     this.beerInfo.foodPairingOne = this._foodPairingOne.value;
     this.beerInfo.foodPairingTwo = this._foodPairingTwo.value;
     this.beerInfo.foodPairingThree = this._foodPairingThree.value;
@@ -70,13 +59,13 @@ export class CreateBeerComponent {
     return this.checkData(this.beerInfo);
   }
 
-  checkData(data: IBeerAdd): string {
+  checkData(data: IBeer): string {
     if (
       !!data.name &&
       !!data.tagline &&
       !!data.firstBrewed &&
       !!data.description &&
-      !!data.imageUrl &&
+      !!data.image_url &&
       !!data.foodPairingOne &&
       !!data.foodPairingTwo &&
       !!data.foodPairingThree &&
@@ -93,7 +82,8 @@ export class CreateBeerComponent {
         if (months < 1 || months > 12 || years < 1900 || years > today.getFullYear()) {
           return "Invalid date";
         } else {
-          return this.createBeer(data);
+          this.createBeer(data);
+          return "Beer created";
         }
       } else {
         return "Invalid date";
@@ -103,8 +93,8 @@ export class CreateBeerComponent {
     }
   }
 
-  createBeer(data: IBeerAdd): string {
-    return this._http.postBeer(data);
+  createBeer(data: IBeer) {
+    this._store.dispatch(BeersAction.addBeer({ data: data }));
   }
 }
 

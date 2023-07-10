@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { IBeer, IBeerRaw, IBeerAdd } from "../interfaces/beerInterface";
+import { IBeer, IBeerRaw } from "../interfaces/beerInterface";
 import { map, tap } from 'rxjs/operators';
 
 
@@ -20,8 +20,7 @@ class HttpService {
     try {
       const list: Observable<IBeer[]> = this._http.get(URLBEERS).pipe(
         map((beerObj: Object) => beerObj as IBeerRaw),
-        map((beerList: IBeerRaw) => beerList.data as IBeer[]),
-        // tap(console.log)
+        map((beerList: IBeerRaw) => beerList.data as IBeer[])
       )
       return list
     } catch (error) {
@@ -30,7 +29,7 @@ class HttpService {
     }
   }
 
-  public postBeer(beer: IBeerAdd): string {
+  public postBeer(beer: IBeer): Observable<IBeer> {
     try {
 
       // CREATES JSON FILE WITH BEER INTERFACE
@@ -39,15 +38,16 @@ class HttpService {
         tagline: beer.tagline,
         first_brewed: beer.firstBrewed,
         description: beer.description,
-        image_url: beer.imageUrl,
+        image_url: beer.image_url,
         food_pairing: [beer.foodPairingOne, beer.foodPairingTwo, beer.foodPairingThree],
         brewers_tips: beer.brewerTips,
         contributed_by: beer.contributor
       };
 
-      console.log(json);
-      this._http.post(URLBEERS, json).subscribe();
-      return "Beer successfully added"
+      const beer$: Observable<IBeer> = this._http.post(URLBEERS, json).pipe(
+        map((beerObj: Object) => beerObj as IBeer)
+      );
+      return beer$;
     } catch (error) {
       console.error(error);
       throw (error);

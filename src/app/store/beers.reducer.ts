@@ -10,14 +10,23 @@ export const initialState: IPayloadStatus = {
 
 export const beersReducer = createReducer(
   initialState,
-  on(BeersAction.getBeers, (state, { pStatus }) =>
+  on(BeersAction.getBeers, (state, { }) =>
     ({ ...state, pStatus: payloadStatus.loading })
   ),
 
-  on(BeersAction.getBeersSuccess, (state, { beers, pStatus }) => { console.log('REDUCER', beers); return ({ ...state, data: beers, pStatus: pStatus }) }
+  on(BeersAction.getBeersSuccess, (state, { beers, pStatus }) => ({ ...state, data: beers, pStatus: pStatus })
   ),
 
   on(BeersAction.getBeersError, (state, { error, pStatus }) =>
     ({ ...state, error: 'an error occured while loading the beer list', pStatus: pStatus })
   ),
+
+  on(BeersAction.addBeer, (state, { }) => ({ ...state, pStatus: payloadStatus.loading })),
+
+  on(BeersAction.addBeerSuccess, (state, { beer, pStatus }) => ({ ...state, pStatus: pStatus, beer: beer })),
+
+  on(BeersAction.addBeerError, (state, { error, pStatus }) =>
+    ({ ...state, error: 'an error occured while adding the beer', pStatus: pStatus })
+  )
+
 );
